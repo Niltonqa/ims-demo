@@ -13,9 +13,12 @@ import org.apache.log4j.Logger;
 import com.qa.ims.controller.Action;
 import com.qa.ims.controller.CrudController;
 import com.qa.ims.controller.CustomerController;
+import com.qa.ims.controller.InventoryController;
 import com.qa.ims.persistence.dao.CustomerDaoMysql;
+import com.qa.ims.persistence.dao.InventoryDaoMysql;
 import com.qa.ims.persistence.domain.Domain;
 import com.qa.ims.services.CustomerServices;
+import com.qa.ims.services.InventoryServices;
 import com.qa.ims.utils.Utils;
 
 public class Ims {
@@ -45,7 +48,10 @@ public class Ims {
 					new CustomerServices(new CustomerDaoMysql(username, password)));
 			doAction(customerController, action);
 			break;
-		case ITEM:
+		case INVENTORY:
+			InventoryController inventoryController = new InventoryController(
+					new InventoryServices(new InventoryDaoMysql(username, password)));
+			doAction(inventoryController, action);
 			break;
 		case ORDER:
 			break;

@@ -40,6 +40,14 @@ public class Inventory {
 		this.inventorycost = inventorycost;
 	}
 
+	public Long getInventorytot() {
+		return inventorytot;
+	}
+
+	public void setInventorytot(Long inventorytot) {
+		this.inventorytot = inventorytot;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
