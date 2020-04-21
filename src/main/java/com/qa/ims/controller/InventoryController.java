@@ -27,6 +27,14 @@ public class InventoryController implements CrudController<Inventory> {
 		return Utils.getLongFromInput();
 	}
 
+	Double getDoubleFromInput() {
+		return Utils.getDoubleFromInput();
+	}
+
+	Integer getIntFromInput() {
+		return Utils.getIntFromInput();
+	}
+
 	@Override
 	public List<Inventory> readAll() {
 		List<Inventory> inventorys = InventoryServices.readAll();
@@ -41,9 +49,9 @@ public class InventoryController implements CrudController<Inventory> {
 		LOGGER.info("Please enter the name of the inventory youd like to create");
 		String inventoryName = getInput();
 		LOGGER.info("please enter the the cost of the inventory");
-		Long inventoryCost = getLongFromInput();
+		Double inventoryCost = getDoubleFromInput();
 		LOGGER.info("Please enter the total number of items in the inventory");
-		Long inventoryTot = getLongFromInput();
+		int inventoryTot = getIntFromInput();
 		LOGGER.info("a New item in the inventory has been made");
 		Inventory inventory = InventoryServices.create(new Inventory(inventoryName, inventoryCost, inventoryTot));
 		return inventory;
@@ -52,21 +60,22 @@ public class InventoryController implements CrudController<Inventory> {
 	@Override
 	public Inventory update() {
 		LOGGER.info("Please enter the inventid of the items you'd like to update");
-		Long inventid = getLongFromInput();
+		int inventid = getIntFromInput();
 		LOGGER.info("Please eneter the name of the inventory youd like to update");
 		String InventoryName = getInput();
 		LOGGER.info("Please enter the new cost of the inventory or current");
-		Long inventoryCost = getLongFromInput();
+		Double inventoryCost = getDoubleFromInput();
 		LOGGER.info("Please enter the new total amount of inventory or current");
-		Long inventoryTot = getLongFromInput();
-		Inventory inventory = InventoryServices.update(new Inventory(inventid, InventoryName, inventoryCost));
-		return inventory;
+		int inventorytot = getIntFromInput();
+		Inventory inventorys = InventoryServices
+				.update(new Inventory(inventid, InventoryName, inventoryCost, inventorytot));
+		return inventorys;
 	}
 
 	@Override
 	public void delete() {
 		LOGGER.info("please enter the id of the inventory item youd like to delete");
-		Long inventid = getLongFromInput();
+		int inventid = getIntFromInput();
 		InventoryServices.delete(inventid);
 	}
 

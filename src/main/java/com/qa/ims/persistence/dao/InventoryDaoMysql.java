@@ -41,7 +41,6 @@ public class InventoryDaoMysql implements Dao<Inventory> {
 	}
 
 	private Inventory inventory(Long inventoryid, String inventoryname, Long inventorycost, Long inventorytot) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -92,10 +91,10 @@ public class InventoryDaoMysql implements Dao<Inventory> {
 		return null;
 	}
 
-	public Inventory readInventory(Long inventoryid) {
+	public Inventory readInventory(int i) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();
-				ResultSet resultSet = statement.executeQuery("SELECT FROM inventory where id = " + inventoryid);) {
+				ResultSet resultSet = statement.executeQuery("SELECT FROM inventory where id = " + i);) {
 			resultSet.next();
 			return inventoryFromResultsSet(resultSet);
 		} catch (Exception e) {
@@ -120,8 +119,7 @@ public class InventoryDaoMysql implements Dao<Inventory> {
 		return null;
 	}
 
-	@Override
-	public void delete(long inventoryid) {
+	public void delete(Inventory inventoryid) {
 		try (Connection connection = DriverManager.getConnection(jdbcConnectionUrl, username, password);
 				Statement statement = connection.createStatement();) {
 			statement.executeUpdate("delete from inventory where id =" + inventoryid);

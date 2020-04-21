@@ -14,8 +14,16 @@ public class Utils {
 		return scanner.nextLine();
 	}
 
+	public static Double getDoubleFromInput() {
+		return Double.valueOf(getInput());
+	}
+
 	public static Long getLongFromInput() {
 		return Long.valueOf(getInput());
+	}
+
+	public static int getIntFromInput() {
+		return Integer.valueOf(getInput());
 	}
 
 }

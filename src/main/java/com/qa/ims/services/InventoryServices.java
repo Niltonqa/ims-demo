@@ -13,23 +13,21 @@ public class InventoryServices implements CrudServices<Inventory> {
 		this.InventoryDao = InventoryDao;
 	}
 
-	@Override
 	public List<Inventory> readAll() {
 		return InventoryDao.readAll();
 	}
 
-	@Override
 	public Inventory create(Inventory inventory) {
 		return InventoryDao.create(inventory);
 	}
 
-	@Override
 	public Inventory update(Inventory inventory) {
 		return InventoryDao.update(inventory);
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(Object t) {
+		// TODO Auto-generated method stub
 
 	}
 

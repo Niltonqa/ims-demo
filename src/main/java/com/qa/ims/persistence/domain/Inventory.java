@@ -2,25 +2,29 @@ package com.qa.ims.persistence.domain;
 
 public class Inventory {
 
-	private Long inventoryid;
+	private int inventoryid;
 	private String inventoryname;
-	private Long inventorycost;
-	private Long inventorytot;
+	private Double inventorycost;
+	private int inventorytot;
 
-	public Inventory(String inventoryname, Long inventorycost, Long inventorytot) {
+	public Inventory(String inventoryname, Double inventoryCost, int inventoryTot) {
 		this.inventoryname = inventoryname;
-		this.inventorycost = inventorycost;
+		this.inventorycost = inventoryCost;
+		this.inventorytot = inventoryTot;
 	}
 
-	public Inventory(Long inventoryid, String inventoryname, Long inventorycost) {
-
+	public Inventory(int inventid, String inventoryName, Double inventoryCost, int inventoryTot) {
+		this.inventoryid = inventid;
+		this.inventoryname = inventoryName;
+		this.inventorycost = inventoryCost;
+		this.inventorytot = inventoryTot;
 	}
 
-	public Long getInventoryid() {
+	public int getInventoryid() {
 		return inventoryid;
 	}
 
-	public void setInventoryid(Long inventoryid) {
+	public void setInventoryid(int inventoryid) {
 		this.inventoryid = inventoryid;
 	}
 
@@ -32,19 +36,19 @@ public class Inventory {
 		this.inventoryname = inventoryname;
 	}
 
-	public Long getInventorycost() {
+	public Double getInventorycost() {
 		return inventorycost;
 	}
 
-	public void setInventorycost(Long inventorycost) {
+	public void setInventorycost(Double inventorycost) {
 		this.inventorycost = inventorycost;
 	}
 
-	public Long getInventorytot() {
+	public double getInventorytot() {
 		return inventorytot;
 	}
 
-	public void setInventorytot(Long inventorytot) {
+	public void setInventorytot(int inventorytot) {
 		this.inventorytot = inventorytot;
 	}
 
@@ -53,9 +57,9 @@ public class Inventory {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((inventorycost == null) ? 0 : inventorycost.hashCode());
-		result = prime * result + ((inventoryid == null) ? 0 : inventoryid.hashCode());
+		result = prime * result + inventoryid;
 		result = prime * result + ((inventoryname == null) ? 0 : inventoryname.hashCode());
-		result = prime * result + ((inventorytot == null) ? 0 : inventorytot.hashCode());
+		result = prime * result + inventorytot;
 		return result;
 	}
 
@@ -73,20 +77,14 @@ public class Inventory {
 				return false;
 		} else if (!inventorycost.equals(other.inventorycost))
 			return false;
-		if (inventoryid == null) {
-			if (other.inventoryid != null)
-				return false;
-		} else if (!inventoryid.equals(other.inventoryid))
+		if (inventoryid != other.inventoryid)
 			return false;
 		if (inventoryname == null) {
 			if (other.inventoryname != null)
 				return false;
 		} else if (!inventoryname.equals(other.inventoryname))
 			return false;
-		if (inventorytot == null) {
-			if (other.inventorytot != null)
-				return false;
-		} else if (!inventorytot.equals(other.inventorytot))
+		if (inventorytot != other.inventorytot)
 			return false;
 		return true;
 	}

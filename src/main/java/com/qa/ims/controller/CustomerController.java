@@ -12,28 +12,27 @@ import com.qa.ims.utils.Utils;
  * Takes in customer details for CRUD functionality
  *
  */
-public class CustomerController implements CrudController<Customer>{
+public class CustomerController implements CrudController<Customer> {
 
 	public static final Logger LOGGER = Logger.getLogger(CustomerController.class);
-	
+
 	private CrudServices<Customer> customerService;
-	
+
 	public CustomerController(CrudServices<Customer> customerService) {
 		this.customerService = customerService;
 	}
-	
 
 	String getInput() {
 		return Utils.getInput();
 	}
-	
+
 	/**
 	 * Reads all customers to the logger
 	 */
 	@Override
 	public List<Customer> readAll() {
 		List<Customer> customers = customerService.readAll();
-		for(Customer customer: customers) {
+		for (Customer customer : customers) {
 			LOGGER.info(customer.toString());
 		}
 		return customers;
@@ -59,7 +58,7 @@ public class CustomerController implements CrudController<Customer>{
 	@Override
 	public Customer update() {
 		LOGGER.info("Please enter the id of the customer you would like to update");
-		Long id = Long.valueOf(getInput());
+		int id = getIntFromInput();
 		LOGGER.info("Please enter a first name");
 		String firstName = getInput();
 		LOGGER.info("Please enter a surname");
@@ -69,14 +68,18 @@ public class CustomerController implements CrudController<Customer>{
 		return customer;
 	}
 
+	private int getIntFromInput() {
+		return Utils.getIntFromInput();
+	}
+
 	/**
 	 * Deletes an existing customer by the id of the customer
 	 */
 	@Override
 	public void delete() {
 		LOGGER.info("Please enter the id of the customer you would like to delete");
-		Long id = Long.valueOf(getInput());
+		int id = getIntFromInput();
 		customerService.delete(id);
 	}
-	
+
 }
